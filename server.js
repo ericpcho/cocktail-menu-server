@@ -6,6 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const path = require('path');
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
