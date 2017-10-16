@@ -12,3 +12,6 @@ router.get('/', (req, res) => {
     .find()
     .then(cocktails => res.status(200).json(cocktails));
 });
+
+
+module.exports = { router };
