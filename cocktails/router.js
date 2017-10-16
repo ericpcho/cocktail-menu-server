@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
     .then(cocktails => res.status(200).json(cocktails));
 });
 
+// Anyone Post
 router.post('/', jsonParser, (req, res) => {
   const newCocktail = { 
     cocktailName: req.body.cocktailName,
