@@ -7,6 +7,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
+const { router: cocktailsRouter} = require('./cocktails');
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
@@ -16,6 +17,8 @@ app.use(morgan('common', { skip: () => process.env.NODE_ENV === 'test' }));
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/cocktails/', cocktailsRouter);
 
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });
