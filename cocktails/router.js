@@ -8,8 +8,12 @@ const jsonParser = bodyParser.json();
 
 // Anyone Get
 router.get('/', (req, res) => {
+  const query = {};
+  if (req.query.alcohol) {
+    query.alcohol = req.query.alcohol;
+  }
   Cocktails
-    .find()
+    .find(query)
     .then(cocktails => res.status(200).json(cocktails));
 });
 
