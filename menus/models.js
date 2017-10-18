@@ -5,11 +5,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const MenuSchema = mongoose.Schema({
-  menuItems: {
+  menuItems: [{
     cocktailName: {
       type: String,
       required: true,
-      unique: true
     },
     ingredients: {
       type: Array,
@@ -30,15 +29,8 @@ const MenuSchema = mongoose.Schema({
     recipe: {
       type: String,
       required: true
-    },
-  },
-  menuLink: {
-    link: {
-      type: String,
-      required: true,
-      unique: true
     }
-  }
+  }]
 });
 
 const Menus = mongoose.models.Menus || mongoose.model('Menus', MenuSchema);

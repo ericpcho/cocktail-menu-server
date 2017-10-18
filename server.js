@@ -20,7 +20,6 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/cocktails/', cocktailsRouter);
-
 app.use('/api/menus/', menuRouter);
 
 app.use('*', (req, res) => {

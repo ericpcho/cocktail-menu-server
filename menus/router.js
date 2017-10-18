@@ -21,23 +21,19 @@ const jsonParser = bodyParser.json();
 // Anyone Post
 router.post('/', jsonParser, (req, res) => {
 
-  const menuItems = [items];
+  const menu = req.body;
 
-  const items = { 
-    cocktailName: req.body.cocktailName,
-    ingredients: req.body.ingredients,
-    alcohol: req.body.alcohol,
-    baseLiquid: req.body.baseLiquid,
-    thumbnail: req.body.thumbnail,
-    recipe: req.body.recipe
-  };
+  // validate menu request body so users are forced to input correct information 
+
 
   Menus
-    .create(menuItems)
+    .create(menu)
     .then(menu => {
       res.status(201).json(menu);
     })
-    .catch(() => {
+    .catch((error) => {
       res.status(500).json({error: 'Something went wrong'});
     });
 });
+
+module.exports = { router };
