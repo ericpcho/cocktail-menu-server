@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
 const { router: cocktailsRouter} = require('./cocktails');
+const { router: menuRouter} = require('./menus');
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
@@ -19,6 +20,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/cocktails/', cocktailsRouter);
+
+app.use('/api/menus/', menuRouter);
 
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });
