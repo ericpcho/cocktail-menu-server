@@ -22,6 +22,7 @@ const jsonParser = bodyParser.json();
 router.post('/', jsonParser, (req, res) => {
 
   const menu = req.body;
+  console.log('from the body', menu);
 
   // validate menu request body so users are forced to input correct information 
 
@@ -29,6 +30,7 @@ router.post('/', jsonParser, (req, res) => {
   Menus
     .create(menu)
     .then(menu => {
+      console.log('after create', menu);
       res.status(201).json(menu);
     })
     .catch((error) => {
