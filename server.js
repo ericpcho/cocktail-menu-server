@@ -7,15 +7,19 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
-const { router: cocktailsRouter} = require('./cocktails');
-const { router: menuRouter} = require('./menus');
+const { router: cocktailsRouter } = require('./cocktails');
+const { router: menuRouter } = require('./menus');
 mongoose.Promise = global.Promise;
 
-const { PORT, DATABASE_URL } = require('./config');
+const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
 const app = express();
 
 app.use(morgan('common', { skip: () => process.env.NODE_ENV === 'test' }));
-app.use(cors());
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
