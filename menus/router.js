@@ -22,10 +22,9 @@ const jsonParser = bodyParser.json();
 router.post('/', jsonParser, (req, res) => {
 
   const menu = req.body;
-  console.log('from the body', menu);
 
-  // validate menu request body so users are forced to input correct information 
-
+  // We don't need validation here bcause this server is private and 
+  //can only be accessed by a GET request with specific id
 
   Menus
     .create(menu)
