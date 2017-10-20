@@ -17,25 +17,25 @@ router.get('/', (req, res) => {
     .then(cocktails => res.status(200).json(cocktails));
 });
 
-// // Anyone Post
-// router.post('/', jsonParser, (req, res) => {
-//   const newCocktail = { 
-//     cocktailName: req.body.cocktailName,
-//     ingredients: req.body.ingredients,
-//     alcohol: req.body.alcohol,
-//     baseLiquid: req.body.baseLiquid,
-//     thumbnail: req.body.thumbnail,
-//     recipe: req.body.recipe
-//   };
+// Anyone Post
+router.post('/', jsonParser, (req, res) => {
+  const newCocktail = { 
+    cocktailName: req.body.cocktailName,
+    ingredients: req.body.ingredients,
+    alcohol: req.body.alcohol,
+    baseLiquid: req.body.baseLiquid,
+    thumbnail: req.body.thumbnail,
+    recipe: req.body.recipe
+  };
 
-//   Cocktails
-//     .create(newCocktail)
-//     .then(cocktail => {
-//       res.status(201).json(cocktail);
-//     })
-//     .catch(() => {
-//       res.status(500).json({error: 'Something went wrong'});
-//     });
-// });
+  Cocktails
+    .create(newCocktail)
+    .then(cocktail => {
+      res.status(201).json(cocktail);
+    })
+    .catch(() => {
+      res.status(500).json({error: 'Something went wrong'});
+    });
+});
 
 module.exports = { router };
