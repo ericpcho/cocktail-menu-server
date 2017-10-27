@@ -11,15 +11,26 @@ router.get('/', (req, res) => {
   const query = {};
   if (req.query.alcohol) {
     query.alcohol = req.query.alcohol;
+
+    Cocktails
+      .find(query)
+      .then(cocktails => res.status(200).json(cocktails));
   }
-  Cocktails
-    .find(query)
-    .then(cocktails => res.status(200).json(cocktails));
+
+  else if (req.query.cocktailName) {
+    query.cocktailName = req.query.cocktailName;
+    console.log(req.query.cocktailName)
+
+    Cocktails
+      .find( {cocktailName: new RegExp(req.query.cocktailName + '+', 'i') })
+      .then(cocktails => res.status(200).json(cocktails));
+  }
+
 });
 
 // Anyone Post
 router.post('/', jsonParser, (req, res) => {
-  const newCocktail = { 
+  const newCocktail = {
     cocktailName: req.body.cocktailName,
     ingredients: req.body.ingredients,
     alcohol: req.body.alcohol,
@@ -34,7 +45,7 @@ router.post('/', jsonParser, (req, res) => {
       res.status(201).json(cocktail);
     })
     .catch(() => {
-      res.status(500).json({error: 'Something went wrong'});
+      res.status(500).json({ error: 'Something went wrong' });
     });
 });
 
