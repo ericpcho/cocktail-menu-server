@@ -19,7 +19,7 @@ const CocktailSchema = mongoose.Schema({
     required: true
   },
   baseLiquid: {
-    type: String,
+    type: Array,
     required: true
   },
   thumbnail: {

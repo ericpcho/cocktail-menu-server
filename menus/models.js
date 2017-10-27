@@ -19,7 +19,7 @@ const MenuSchema = mongoose.Schema({
       required: true
     },
     baseLiquid: {
-      type: String,
+      type: Array,
       required: true
     },
     thumbnail: {
