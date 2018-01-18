@@ -29,7 +29,6 @@ router.post('/', jsonParser, (req, res) => {
   Menus
     .create(menu)
     .then(menu => {
-      console.log('after create', menu);
       res.status(201).json(menu);
     })
     .catch((error) => {

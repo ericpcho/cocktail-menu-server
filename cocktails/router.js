@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 
   else if (req.query.cocktailName) {
     query.cocktailName = req.query.cocktailName;
-    console.log(req.query.cocktailName)
 
     Cocktails
       .find( {cocktailName: new RegExp(req.query.cocktailName + '+', 'i') })
