@@ -1,35 +1,30 @@
-'use strict';
+"use strict";
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const { Cocktails } = require('./models');
+const express = require("express");
+const bodyParser = require("body-parser");
+const { Cocktails } = require("./models");
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
 // Anyone Get
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   const query = {};
   if (req.query.alcohol) {
     query.alcohol = req.query.alcohol;
 
-    Cocktails
-      .find(query)
-      .then(cocktails => res.status(200).json(cocktails));
-  }
-
-  else if (req.query.cocktailName) {
+    Cocktails.find(query).then(cocktails => res.status(200).json(cocktails));
+  } else if (req.query.cocktailName) {
     query.cocktailName = req.query.cocktailName;
-    console.log(req.query.cocktailName)
+    console.log(req.query.cocktailName);
 
-    Cocktails
-      .find( {cocktailName: new RegExp(req.query.cocktailName + '+', 'i') })
-      .then(cocktails => res.status(200).json(cocktails));
+    Cocktails.find({
+      cocktailName: new RegExp(req.query.cocktailName + "+", "i")
+    }).then(cocktails => res.status(200).json(cocktails));
   }
-
 });
 
 // Anyone Post
-router.post('/', jsonParser, (req, res) => {
+router.post("/", jsonParser, (req, res) => {
   const newCocktail = {
     cocktailName: req.body.cocktailName,
     ingredients: req.body.ingredients,
@@ -39,13 +34,12 @@ router.post('/', jsonParser, (req, res) => {
     recipe: req.body.recipe
   };
 
-  Cocktails
-    .create(newCocktail)
+  Cocktails.create(newCocktail)
     .then(cocktail => {
       res.status(201).json(cocktail);
     })
     .catch(() => {
-      res.status(500).json({ error: 'Something went wrong' });
+      res.status(500).json({ error: "Something went wrong" });
     });
 });
 

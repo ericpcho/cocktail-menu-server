@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
@@ -12,7 +12,7 @@ const CocktailSchema = mongoose.Schema({
   },
   ingredients: {
     type: Array,
-    required: true,
+    required: true
   },
   alcohol: {
     type: String,
@@ -29,9 +29,10 @@ const CocktailSchema = mongoose.Schema({
   recipe: {
     type: String,
     required: true
-  },
+  }
 });
 
-const Cocktails = mongoose.models.Cocktails || mongoose.model('Cocktails', CocktailSchema);
+const Cocktails =
+  mongoose.models.Cocktails || mongoose.model("Cocktails", CocktailSchema);
 
 module.exports = { Cocktails };

@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const {Menus} = require('./models');
-const {router} = require('./router');
+const { Menus } = require("./models");
+const { router } = require("./router");
 
-module.exports = {Menus, router};
+module.exports = { Menus, router };
